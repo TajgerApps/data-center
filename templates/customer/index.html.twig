@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello!{% endblock %}
+
+{% block stylesheets %}
+    <style type="text/css">
+        .wrapper table{
+            width: 100%;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="wrapper">
+        <table>
+            <tr>
+                <th>
+                    lp.
+                </th>
+                <th>
+                    Fullname
+                </th>
+                <th>
+                    Company name
+                </th>
+                <th>
+                    Short company name
+                </th>
+                <th>
+                    nip
+                </th>
+                <th>
+                    email
+                </th>
+                <th>
+                    phones
+                </th>
+                <th>
+                    Action
+                </th>
+            </tr>
+            {% for customer in customers %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ customer.getFullName }}</td>
+                    <td>{{ customer.getCompanyName }}</td>
+                    <td>{{ customer.getShortCompanyName }}</td>
+                    <td>{{ customer.nip }}</td>
+                    <td>{{ customer.email }}</td>
+                    <td>{{ customer.phone }} {% if customer.phone != '' and customer.getSecondPhone != '' %},{% endif %} {{ customer.getSecondPhone }}</td>
+                    <td>
+{#                        <a href="{{ path('editCustomer', {id: customer.id}) }}" class="btn btn-primary">Edit</a>#}
+                        <a href="{{ path('deleteCustomer', {id: customer.id}) }}" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

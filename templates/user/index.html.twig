@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello!{% endblock %}
+
+{% block stylesheets %}
+    <style type="text/css">
+        .wrapper table{
+            width: 100%;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+<div class="wrapper">
+    <table>
+        <tr>
+            <th>
+                lp.
+            </th>
+            <th>
+                Username
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Role
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+        {% for user in users %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.role }}</td>
+                <td>
+                    <a href="{{ path('editUser', {id: user.id}) }}" class="btn btn-primary">Edit</a>
+                    <a href="{{ path('deleteUser', {id: user.id}) }}" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}
